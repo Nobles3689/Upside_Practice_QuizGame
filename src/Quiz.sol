@@ -97,7 +97,7 @@ contract Quiz{
         }
         
         payable(msg.sender).call{value: reward*2}("");//testClaim에서 배팅금액의 2배인지 체크하기 때문
-        vault_balance -= reward*2;
+        vault_balance -= reward;
 
     }
 
