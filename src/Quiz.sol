@@ -14,8 +14,10 @@ contract Quiz{
     uint public vault_balance;
     Quiz_item[] private quiz_pool;//지금까지 추가된 퀴즈들!
     mapping(address => bool)[] private result;//정답 여부 저장
+    address private admin;
 
     constructor () {
+        admin = msg.sender;
         Quiz_item memory q;
         q.id = 1;
         q.question = "1+1=?";
@@ -26,7 +28,7 @@ contract Quiz{
     }
 
     function addQuiz(Quiz_item memory q) public {
-        if(msg.sender == address(1)){//testAddQuizACL()에서 msg.sender를 address(1)로 바꿔서 진행할 때, Revert되어야함!
+        if(msg.sender != admin){//testAddQuizACL()에서 msg.sender를 address(1)로 바꿔서 진행할 때, Revert되어야함!
             revert("You have no authority.");
         }
         quiz_pool.push(q);//퀴즈풀에 퀴즈 추가
