@@ -36,7 +36,7 @@ contract Quiz{
 
     function getQuiz(uint quizId) public view returns (Quiz_item memory) {
         require(quizId > 0 && quizId <= getQuizNum(), "There is no quiz for that id.");
-        Quiz_item memory tmp_q = Quiz_item(0, "", "", 0, 0);//임시 변수
+        Quiz_item memory tmp_q;//임시 변수
         tmp_q = quiz_pool[quizId-1];
         tmp_q.answer = "";//정답 지우기
         return tmp_q;
