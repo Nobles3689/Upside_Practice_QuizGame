@@ -80,8 +80,9 @@ contract Quiz{
                 bets[i][msg.sender] = 0;
             }
         }
-        payable(msg.sender).call{value: reward*2}("");//testClaim에서 배팅금액의 2배인지 체크하기 때문
         vault_balance -= reward;
+        payable(msg.sender).call{value: reward*2}("");//testClaim에서 배팅금액의 2배인지 체크하기 때문
+        
     }
     //setUp에서 5 이더 보내는 것 받기 위함 - 안하니까 언더플로우 뜨더라구요...
     receive() external payable {
